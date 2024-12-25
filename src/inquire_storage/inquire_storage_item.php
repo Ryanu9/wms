@@ -10,7 +10,11 @@ if ($authority[12]==0){
 	include "../basic/include.php";
 	include "../basic/database.php";
 	
-	$itemid = $_GET[itemid];		
+	$itemid = $_GET['itemid'];
+	// 验证用户输入的 itemid
+	if (!ctype_digit($itemid)) {
+    	die('非法的输入'); // 如果 ID 只允许数字
+	}	
 	$flag = '';
 	if($itemid=='')
 		$flag = 'none';
