@@ -5,20 +5,26 @@
 <title>部门信息修改</title>
 </head>
 <?php
-	include "../include.php";
-	include "../database.php";
+include "../include.php";
+include "../database.php";
 
-	$id=$_GET["id"];
-	if($id=="")
-		$error="参数ID传递错误!";
-	else{
-		$query="select * from table_depart where id=$id";//echo $query."<br>";
-		$result=mysql_query($query);
-		$RS=mysql_fetch_array($result);
-		if(empty($RS))
-			$error="指定的部门不存在!";
-		mysql_close();
-	}
+$id = $_GET['id'] ?? '';
+// 添加过滤逻辑，确保 $id 仅为数字
+if (!preg_match('/^\d+$/', $id)) {
+    $error = "参数 ID 传递错误!";
+} else {
+    if ($id == "") {
+        $error = "参数 ID 传递错误!";
+    } else {
+        $query = "select * from table_depart where id=$id"; // echo $query."<br>";
+        $result = mysql_query($query);
+        $RS = mysql_fetch_array($result);
+        if (empty($RS)) {
+            $error = "指定的部门不存在!";
+        }
+        mysql_close();
+    }
+}
 ?>
 <style type="text/css">
 a:link {
