@@ -16,7 +16,7 @@ $temptype=explode("|",$_POST[typeid]);
 $maintype=$temptype[1];
 $subtype=$_POST[stype];
 $name=$_POST[name];
-$encode=$_POST[encode];
+$encode = mysql_real_escape_string($_POST['encode']);
 $barcode=$_POST[barcode];
 $size=$_POST[size];
 $unit=$_POST[unit];
@@ -31,7 +31,7 @@ $id=$_GET[id];
 echo $upfile;
 if($flag==1)
 {
-  $sql=mysql_query("select * from tb_product where encode='".$encode."'",$conn);
+    $sql = mysql_query("select * from tb_product where encode='$encode'", $conn);
   $info=mysql_fetch_array($sql);
   if($info==true)
   {
