@@ -2,7 +2,12 @@
 include "../conn/conn.php";
 
 $flag=$_POST[flag];
-$filename =$_POST[filename];
+$filename = isset($_POST['filename']) ? basename($_POST['filename']) : 'backup.sql';
+
+// 
+if (!preg_match('/^[a-zA-Z0-9_-]+\.sql$/', $filename)) {
+    die("invalid filename");
+}
 
 $path = "sql/" . $filename;
 
