@@ -11,9 +11,9 @@ if ($authority[12]==0){
 	include "../basic/database.php";
 	
 	$itemid = $_GET['itemid'];
-	// 验证用户输入的 itemid
+	// verify itemid
 	if (!ctype_digit($itemid)) {
-    	die('非法的输入'); // 如果 ID 只允许数字
+    	die('Invalid input'); // if itemid is not a number
 	}	
 	$flag = '';
 	if($itemid=='')
